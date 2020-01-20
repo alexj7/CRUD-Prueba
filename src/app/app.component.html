@@ -50,6 +50,9 @@
                   </li>
                   <li class="page-item" [class.active]="page == 1" ><a class="page-link" (click)="changePage(1)">1</a></li>
                   <li class="page-item" [class.active]="page == 2" ><a class="page-link" (click)="changePage(2)">2</a></li>
+                  <li  class="page-item" [class.active]="page == i"  *ngFor="let item of extraPage(); let i = index;" >
+                    <a class="page-link" (click)="myUser(item)"> {{item}} </a>
+                  </li>
                   <li class="page-item">
                     <a class="page-link" (click)="changePage(page + 1)" aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>

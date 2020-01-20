@@ -29,9 +29,24 @@ export class AppComponent {
     // this.showAlert('success', 'success', 'cargado plataforma')
     
     this.getUser(this.page)
-    if(JSON.parse(localStorage.getItem('users')) != null){
-      this.createdUsers = JSON.parse(localStorage.getItem('users'))
+  }
+
+  extraPage(){
+    if(this.createdUsers.length != 0){
+      if(this.createdUsers.length < 6){
+        return [3]
+      }
+      let qty = (this.createdUsers.length / 6).toFixed(); 
+      let aux = []
+      for (let index = 0; index < Number(qty); index++) {
+       aux.push(index + 2)
+      }
+      return aux
     }
+  }
+
+  myUser(page){
+
   }
 
   showAlert( type , title , message){
@@ -94,6 +109,7 @@ export class AppComponent {
 
   createUser(){
     this.userService.createUser(this.user).subscribe(data =>{
+      this.user['id'] = 12 + this.createdUsers.length
       this.createdUsers.push(this.user)
       console.log(data)
       this.showAlert('success', 'success', 'cargado plataforma')
