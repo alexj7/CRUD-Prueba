@@ -1,0 +1,160 @@
+.social-card {
+    border-radius: 10px !important;
+    margin: 10px;
+    height: 550px;
+    position: relative;
+    background-color: white;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.05), 0 1px 4px 0 rgba(0, 0, 0, 0.08), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+.blue-back{
+    background-color:  rgb(29, 161, 242);
+    color: white;
+}
+
+.user-img{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.father{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.user2{
+    color: gray;
+    font-size: 80px;
+    margin-top: 35px;
+}
+
+.page-item{
+    cursor: pointer;
+}
+
+.thead > input.form-control{
+    width: 200px;
+    position: absolute;
+    right: 20px;
+    border-radius: 10px;
+}
+
+.align{
+    display: flex;
+    align-items: center;
+}
+
+input.icon{
+    width: calc(100% - 50px);
+    padding-right: 40px;
+}
+
+.f500{
+    font-weight: 500;
+}
+
+.check{
+    color: green;
+    position: absolute;
+    right: 30px;
+    font-size: 20px;
+    opacity: 0.7;
+    top: 9px;
+}
+
+.times{
+    color: #ff6a6a;
+    position: absolute;
+    right: 30px;
+    font-size: 20px;
+    opacity: 0.7;
+    top: 9px;
+}
+
+.white-text{
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.thead{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+}
+
+.btn-second{
+    background-color: rgb(29, 161, 242);
+    color: white;
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.16), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.btn-second:hover{
+    background-color: rgb(29, 161, 242);
+    color: white;
+    -webkit-transition: .3s ease-in-out;
+    transition: all .3s ease-in-out;
+    box-shadow: 0 5px 11px 0 rgba(0,0,0,.18), 0 4px 15px 0 rgba(0,0,0,.15);
+}
+
+i{
+    cursor: pointer;
+}
+
+.user{
+    color:gray ;
+}
+
+.addButt{
+    color: white;
+    font-weight:400;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    font-size: 25px;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    outline: 0;
+}
+
+.body{
+    height: 400px;
+    overflow-y: auto;
+    display: contents;
+}
+
+.addButt:hover{
+    box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+}
+
+table td{
+    vertical-align: middle;
+}
+
+tbody > tr:hover{
+    cursor: pointer;
+    background-color: #1da1f233;
+}
+
+.edit{
+    color: #ff9800;
+}
+
+.trash{
+    color: #ff6a6a;
+}
+
+i.trash:hover, i.edit:hover{
+    color:rgb(29, 161, 242);
+}
