@@ -18,6 +18,12 @@ export class UserService {
     );
   }
 
+  public updateUser(body): Observable<any> {
+    return this.http.put(this.url + '/' + body.id, {body}).pipe((response => response),
+    catchError(this.handleError)
+  );
+  }
+
   public createUser(body): Observable<any> {
     return this.http.post(this.url, {body}).pipe((response => response),
       catchError(this.handleError)

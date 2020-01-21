@@ -11,7 +11,10 @@
             placeholder="Buscar"
           />
         </div>
-        <div class="animated fadeIn" *ngIf="!create" >
+
+        <div *ngIf="loader" class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+
+        <div class="animated fadeIn" *ngIf="!create && !loader" >
             <table class="table">
                 <thead>
                     <tr>
@@ -28,20 +31,21 @@
                         <tr *ngFor="let item of users | filter: search ; let i = index;" >
                             <th scope="row"> {{item.id}} </th>
                             <th scope="row"> 
-                                <img class="user-img" src="{{item.avatar}}" alt="">    
+                                <img *ngIf="item.avatar" class="user-img" src="{{item.avatar}}" alt="">  
+                                <i *ngIf="!item.avatar" class="material-icons user3">person</i>
                             </th>
                             <td> {{ item.first_name }} </td>
                             <td> {{ item.last_name }} </td>
                             <td> {{item.email}} </td>
                             <td>
-                                <i class="material-icons mr-2 edit">edit</i>
-                                <i class="material-icons trash" (click)="delUser(item.id)" >delete</i>
+                                <i class="material-icons mr-2 edit" (click)="editUser(item); indexEdit = i;" >edit</i>
+                                <i class="material-icons trash" (click)="delUser(item.id); indexEdit = i;" >delete</i>
                             </td>
                         </tr>
                     </div>
                 </tbody>
             </table>
-            <nav aria-label="Page navigation example">
+            <nav id="navigation" aria-label="Page navigation example">
                 <ul class="pagination ml-3">
                   <li class="page-item">
                     <a class="page-link" (click)="changePage(page - 1)" aria-label="Previous">
@@ -50,11 +54,11 @@
                   </li>
                   <li class="page-item" [class.active]="page == 1" ><a class="page-link" (click)="changePage(1)">1</a></li>
                   <li class="page-item" [class.active]="page == 2" ><a class="page-link" (click)="changePage(2)">2</a></li>
-                  <li  class="page-item" [class.active]="page == i"  *ngFor="let item of extraPage(); let i = index;" >
-                    <a class="page-link" (click)="myUser(item)"> {{item}} </a>
+                  <li  class="page-item"  *ngFor="let item of extraPage(item); let i = index;"  [class.active]="page == item" >
+                    <a class="page-link"  (click)="myUser(item)"> {{item}} </a>
                   </li>
                   <li class="page-item">
-                    <a class="page-link" (click)="changePage(page + 1)" aria-label="Next">
+                    <a class="page-link" (click)="page < 2 ? changePage(page + 1): myUser(page + 1)" aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>
                     </a>
                   </li>
@@ -63,8 +67,9 @@
         </div>
 
 
-        <div class="body col-md-12 animated fadeIn pt-5" align="center" *ngIf="create">
-            <i class="material-icons mr-2 user2">person</i>
+        <div class="body2 col-md-12 animated fadeIn pt-5" align="center" *ngIf="create && !loader">
+            <img *ngIf="user.avatar" width="60px" class="user-img2" src="{{user.avatar}}" alt="">  
+            <i *ngIf="!user.avatar" class="material-icons user2">person</i>
 
             <div class="col-md-6 align mt-4">
                 <i class="material-icons mr-2 user ">account_circle</i>
@@ -84,12 +89,19 @@
                 <input type="text" placeholder="Email" [(ngModel)]="user.email"   class="form-control icon" />
             </div>
 
-            <button [disabled]="valid()" type="button" class="btn btn-second mt-4" (click)="createUser()" > Crear Usuario </button>
+            <button [disabled]="valid()" type="button" class="btn btn-second mt-4" (click)="user.id ? updateUser() :createUser()" > 
+                <span *ngIf="!user.id">
+                    Crear Usuario
+                </span>     
+                <span *ngIf="user.id">
+                    Editar Usuario
+                </span>
+            </button>
     
         </div>
 
 
-        <span class="addButt blue-back" (click)="change()">
+        <span *ngIf='!loader' class="addButt blue-back animated fadeIn" (click)="change()">
             <span class="animated fadeIn" *ngIf="!create" >
                 +
             </span>
